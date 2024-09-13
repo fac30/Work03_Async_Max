@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge | Functions and asynchronous JavaScript</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+      // challenge 1
+      function logger(arg) {
+        console.log(arg);
+      }
+      const returnsOne = () => 1;
+      logger(returnsOne);
+      const num = 1;
+      logger(num);
+
+      // challenge 2
+      logger(returnsOne());
+      logger(typeof(returnsOne));
+      logger(typeof(returnsOne()));
+
+      // challenge 3
+      /*window.addEventListener("click", (event) => {
+      console.log(event.clientX, event.clientY);
+      });*/
+
+      function logClicks (event) {
+        console.log(event.clientX, event.clientY);
+      }
+
+      window.addEventListener("click", logClicks);
+
+      // challenge 4
+      function one(f) {
+        return f(1);
+      }
+
+      one(f => console.log(f));
+
+      // challenge 5
+      function asyncDouble(x, callback) {
+        window.setTimeout(() => callback(x*2), 1000);
+      }
+
+      asyncDouble(10, x => console.log(x));
+
+      // traffic light challenge
+      function light(lightColour, callback) {
+        window.setTimeout(() => {
+          console.log(lightColour)
+          callback(lightColour);
+        }, 1000);
+      }
+
+      light("green", () => {
+        light("amber", () => {
+          light("red", () => {
+            light("amber", () => {
+              light("green", () => {
+                console.log("finished");
+              });
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
